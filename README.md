@@ -62,10 +62,25 @@ sudo chown influxdb:influxdb -R /mnt/usbdrive/influxdb/wal
 ```
 
 Edit the file `sudo nano /etc/influxdb/influxdb.conf`
-In the [data] section change the folder locations
+In the `[data]` section change the folder locations change folders as needed:
+```
+[data]
+  # The directory where the TSM storage engine stores TSM files.
+  dir = "/mnt/usbdrive/influxdb/data"
 
+  # The directory where the TSM storage engine stores WAL files.
+  wal-dir = "/mnt/usbdrive/influxdb/wal"
+```
 
-
+## Set the UDP port in the config
+Edit the config file `/etc/influxdb/influxdb.conf`
+Uncomment the UDP section and configure as desired:
+```
+[[udp]]
+  enabled = true
+  bind-address = ":8089"
+  database = "sensor"
+```
 
 
 
