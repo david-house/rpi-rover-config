@@ -50,12 +50,17 @@ sudo systemctl unmask influxdb.service
 sudo systemctl start influxdb
 ```
 ## Set the data storage folder in the influxdb.conf
-Create the data storage folders if needed
+Create the data storage folders if needed, and set the ownership
 ```bash
 sudo mkdir /mnt/usbdrive/influxdb
 sudo mkdir /mnt/usbdrive/influxdb/data
 sudo mkdir /mnt/usbdrive/influxdb/wal
+
+sudo chown influxdb:influxdb -R /mnt/usbdrive/influxdb
+sudo chown influxdb:influxdb -R /mnt/usbdrive/influxdb/data
+sudo chown influxdb:influxdb -R /mnt/usbdrive/influxdb/wal
 ```
+
 Edit the file `sudo nano /etc/influxdb/influxdb.conf`
 In the [data] section change the folder locations
 
